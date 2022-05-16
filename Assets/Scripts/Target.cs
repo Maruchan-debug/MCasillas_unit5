@@ -14,11 +14,13 @@ public class Target : MonoBehaviour
     public float ySpawnPos = -2.00f;
 
     private Rigidbody targetRb;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         targetRb = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         RandomForce();
         RandomTorque();
@@ -43,6 +45,7 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
+     
         Destroy(gameObject);
     }
 
