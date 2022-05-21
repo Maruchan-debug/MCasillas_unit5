@@ -24,16 +24,18 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(SpawnRate);
-            UpdateScore(1);
             Instantiate(prefabs[Random.Range(0, prefabs.Count)]);
         }
     }
 
-    private void UpdateScore(int scoreDelta)
+    public void UpdateScore(int scoreDelta)
     {
         score += scoreDelta;
+        if(score < 0)
+        {
+            score = 0;
+        }
         scoreText.text = "Score: " + score;
-
     }
 
     // Update is called once per frame
