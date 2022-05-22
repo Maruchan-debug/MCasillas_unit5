@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Target : MonoBehaviour
 {
 
@@ -48,19 +49,21 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        gameManager.UpdateScore(pointValue);
-        Instantiate(expParticle, transform.position, expParticle.transform.rotation);
-        Destroy(gameObject);
+        if (gameManager.gameActive)
+        {
+            gameManager.UpdateScore(pointValue);
+            Instantiate(expParticle, transform.position, expParticle.transform.rotation);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        if (!gameObject.CompareTag("Hazard"))
+        {
+            gameManager.GameOver();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
